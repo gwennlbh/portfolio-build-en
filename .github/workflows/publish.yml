@@ -23,16 +23,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout source code repository
+        uses: actions/checkout@v4
+        with:
+          repository: gwennlbh/portfolio
+          path: source
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.16.0"
 
       - name: Install dependencies
-        run: npm install
+        run: cd source; npm install
 
       - name: Build project
         run: |
+          cd source
           # Extract the language from the repository name
           # e.g., "portfolio-build-en" gives "en"
           lang=$(echo ${{ github.repository }} | sed 's:${{ github.repository_owner }}/portfolio-build-::')
