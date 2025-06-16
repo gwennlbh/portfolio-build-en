@@ -29,6 +29,7 @@ jobs:
       - name: Checkout source code repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.WORKFLOW_SYNC_PAT }}
           repository: gwennlbh/portfolio
           path: source
           ref: ${{ github.event.client_payload.ref }}
